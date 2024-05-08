@@ -23,18 +23,21 @@ return `#${Math.floor(Math.random() * 16777215)
     destroyBoxes();
   });
 
-  function createBoxes(amount) {
-    let size = 30;
-    boxesContainer.innerHTML = '';
-    for (let i = 0; i < amount; i++) {
-      const box = document.createElement('div');
-      box.style.width = `${size}px`;
-      box.style.height = `${size}px`;
-      box.style.backgroundColor = getRandomHexColor();
-      boxesContainer.appendChild(box);
-      size += 10;
-    }
+function createBoxes(amount) {
+  let size = 30;
+  const fragment = document.createDocumentFragment(); 
+
+  for (let i = 0; i < amount; i++) {
+    const box = document.createElement('div');
+    box.style.width = `${size}px`;
+    box.style.height = `${size}px`;
+    box.style.backgroundColor = getRandomHexColor();
+    fragment.appendChild(box); 
+    size += 10;
   }
+
+  boxesContainer.appendChild(fragment);
+}
 
   function destroyBoxes() {
     boxesContainer.innerHTML = '';
